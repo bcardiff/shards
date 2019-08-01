@@ -60,14 +60,14 @@ class BuildCommandTest < Minitest::Test
   end
 
   def test_reports_error_when_target_failed_to_compile
-    File.write File.join(application_path, "src", "cli.cr"), "a = ..."
+    File.write File.join(application_path, "src", "cli.cr"), "a = ...."
 
     Dir.cd(application_path) do
       ex = assert_raises(FailedCommand) do
         run "shards build --no-color app"
       end
       assert_match "target app failed to compile", ex.stdout
-      assert_match "Syntax error", ex.stdout
+      assert_match "unexpected token", ex.stdout
       refute File.exists?(bin_path("app"))
     end
   end
