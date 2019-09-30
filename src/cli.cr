@@ -24,7 +24,7 @@ module Shards
   end
 
   def self.run
-    OptionParser.parse! do |opts|
+    OptionParser.parse(ARGV) do |opts|
       path = Dir.current
 
       opts.on("--no-color", "") { self.colors = false }
