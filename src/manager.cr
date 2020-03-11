@@ -4,7 +4,8 @@ module Shards
   class Manager
     getter spec : Spec
     getter packages : Set
-    #getter locks : Array(Dependency)
+
+    # getter locks : Array(Dependency)
 
     def initialize(@spec, update_cache = true)
       @packages = Set.new(update_cache: update_cache)
@@ -13,9 +14,9 @@ module Shards
     def resolve
       resolve(spec.dependencies)
       resolve(spec.development_dependencies) unless Shards.production?
-    #rescue ex : Conflict
-    #  Shards.logger.error ex.message
-    #  exit -1
+      # rescue ex : Conflict
+      #  Shards.logger.error ex.message
+      #  exit -1
     end
 
     # TODO: handle conflicts

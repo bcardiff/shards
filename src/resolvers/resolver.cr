@@ -6,7 +6,7 @@ require "../script"
 
 module Shards
   abstract class Resolver
-    PROJECTFILE_GITHUB_RE = /github\s+"(.+?\/(.+?))"(.*)/
+    PROJECTFILE_GITHUB_RE        = /github\s+"(.+?\/(.+?))"(.*)/
     PROJECTFILE_GITHUB_BRANCH_RE = /"(.+?)"/
 
     getter dependency : Dependency
@@ -72,7 +72,7 @@ module Shards
       dependencies = Array(Hash(String, String)).new
 
       contents.scan(PROJECTFILE_GITHUB_RE) do |m|
-        dependency = { "name" => m[2], "github" => m[1] }
+        dependency = {"name" => m[2], "github" => m[1]}
         if m[3]? && (mm = m[3].match(PROJECTFILE_GITHUB_BRANCH_RE))
           dependency["branch"] = mm[1]
         end

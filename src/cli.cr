@@ -8,12 +8,12 @@ module Shards
     puts "Commands:"
     puts "    build [targets] [options]"
     puts "    check"
-    #puts "    info <package>"
+    # puts "    info <package>"
     puts "    init"
     puts "    install"
     puts "    list"
     puts "    prune"
-    #puts "    search <query>"
+    # puts "    search <query>"
     puts "    update"
     # puts "    update [package package ...]"
     puts "    version [path]"
@@ -40,9 +40,9 @@ module Shards
           build(path, args[1..-1])
         when "check"
           Commands::Check.run(path)
-        #when "info"
-        #  display_help_and_exit(opts) unless args[1]?
-        #  Commands::Info.run(args[1])
+          # when "info"
+          #  display_help_and_exit(opts) unless args[1]?
+          #  Commands::Info.run(args[1])
         when "init"
           Commands::Init.run(path)
         when "install"
@@ -92,15 +92,12 @@ end
 
 begin
   Shards.run
-
 rescue ex : OptionParser::InvalidOption
   Shards.logger.fatal ex.message
   exit 1
-
 rescue ex : Shards::ParseError
   ex.to_s(STDERR)
   exit 1
-
 rescue ex : Shards::Error
   Shards.logger.error ex.message
   exit 1
